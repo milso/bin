@@ -1,0 +1,5 @@
+#!/bin/bash
+inxi -S | grep Sys
+inxi -C | grep CPU
+inxi -G | grep Graph
+inxi -A | grep Audio

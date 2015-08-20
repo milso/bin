@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat ~/.mplayer.log | grep Playing | tail -1 | sed 's/Playing/Now Playing:/'

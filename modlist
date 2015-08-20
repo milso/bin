@@ -1,0 +1,3 @@
+#!/bin/bash
+lspci -mvk | awk '/^Module/ {print $2}' | sort -u
+

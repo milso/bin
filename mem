@@ -1,0 +1,2 @@
+#!/bin/bash
+ps --sort -rss -o comm,pmem,rss -C $1

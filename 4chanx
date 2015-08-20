@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd $HOME/.config/dwb/scripts && wget https://raw.github.com/mayhemydg/4chan-x/stable/4chan_x.user.js && mv 4chan_x.user.js 4chanx.js

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CURRENT="$(mpc | head -1)"
+
+notify-send "$CURRENT" &

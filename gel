@@ -1,0 +1,2 @@
+mkdir $2 && cd $2 && gelbooru $1 "$2 rating:safe" > $2 && wget -i $2
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd ~/.games/kag_x && ./rungame.sh

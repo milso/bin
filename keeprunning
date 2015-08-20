@@ -1,0 +1,10 @@
+#!/bin/sh
+SERVICE='conky'
+ 
+if ps ax | grep -v grep | grep $SERVICE > /dev/null
+then
+    `killall conky &`
+else
+    `bar &`
+fi
+ 

@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+# gelbooruscrape.pl --- Scrapes images from gelbooru
+# Author:  <shadertest@akiyama.shadertest.ca>
+# Created: 31 Oct 2011
+# Version: 0.01
+
+use warnings;
+use strict;
+use 5.010;
+
+use diagnostics;
+
+use POSIX qw(floor);
+use LWP::UserAgent;
+
+my $useragent = new LWP::UserAgent(agent => "Mozilla/5.0 (X11; Linux x86_64; rv:10.0a1) Gecko/20100101 Firefox/10.0a1");
+my $query = 'http://gelbooru.com/index.php?page=post&s=list&tags=';
+my $count = shift;
+my $tags = join "+", @ARGV;
+
+my $pages = floor(($count-1)/28);
+my @images;
+
+
+for (my $page = 0; $page <= $pages * 28; $page += 28) {
+    my $completeq = $query.$tags.'&pid='.$page;
+    my $page = $useragent->get($completeq);
+    my @lines = split /\n/, $page->decoded_content;
+    for (@lines) {
+        if (/thumbs\/(\d+)\/thumbnail_([0-9a-f]+)\.(\w+)/) {
+            push @images, "http://img2.gelbooru.com//images/$1/$2.$3";
+        }
+    }
+}
+@images = @images[0..$count-1];
+
+print map {"$_\n"} @images;
+
+
+
+
+
+
+__END__
+
+=head1 NAME
+
+gelbooruscrape.pl - Describe the usage of script briefly
+
+=head1 SYNOPSIS
+
+gelbooruscrape.pl [options] args
+
+      -opt --long      Option description
+
+=head1 DESCRIPTION
+
+Stub documentation for gelbooruscrape.pl, 
+
+=head1 AUTHOR
+
+, E<lt>shadertest@akiyama.shadertest.caE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2011 by 
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.2 or,
+at your option, any later version of Perl 5 you may have available.
+
+=head1 BUGS
+
+None reported... yet.
+
+=cut
